@@ -20,6 +20,7 @@ import com.github.rholder.retry.RetryException;
 import io.cdap.plugin.google.drive.common.FileFromFolder;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
@@ -31,7 +32,7 @@ import java.util.concurrent.ExecutionException;
  * RecordReader implementation, which reads {@link FileFromFolder} wrappers from Google Drive using
  * Google Drive API.
  */
-public class GoogleDriveRecordReader extends RecordReader<NullWritable, FileFromFolder> {
+public class GoogleDriveRecordReader extends RecordReader<Text, FileFromFolder> {
 
   private GoogleDriveSourceClient googleDriveSourceClient;
   private String fileId;
@@ -61,8 +62,8 @@ public class GoogleDriveRecordReader extends RecordReader<NullWritable, FileFrom
   }
 
   @Override
-  public NullWritable getCurrentKey() {
-    return null;
+  public Text getCurrentKey() {
+    return new Text("");
   }
 
   @Override

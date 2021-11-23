@@ -17,11 +17,12 @@
 package io.cdap.plugin.google.drive.common;
 
 import com.google.api.services.drive.model.File;
+import java.io.Serializable;
 
 /**
  * Representation for file can be written to Google Drive system.
  */
-public class FileFromFolder {
+public class FileFromFolder implements Serializable {
   private final byte[] content;
   private final long offset;
   private final File file;
